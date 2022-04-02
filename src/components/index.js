@@ -3,3 +3,4 @@ export { Menubar } from "./Menubar";
 export { VideoCard } from "./VideoCard";
 export { CustomNavLink } from "./CustomNavLink";
 export { CategoryChip } from "./CategoryChip";
+export { FormInput } from "./FormInput";
