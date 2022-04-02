@@ -1,0 +1,21 @@
+.card-modal {
+  top: 0rem;
+  right: 0rem;
+  width: max-content;
+  padding: 0.5rem;
+  background-color: var(--white);
+  border: 1px solid var(--secondary-color);
+  border-radius: 0.25rem;
+}
+
+.card-modal-item {
+  width: 100%;
+  margin: 0.25rem 0;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  text-align: start;
+}
+
+.card-modal-item:hover {
+  background-color: var(--secondary-color);
+}

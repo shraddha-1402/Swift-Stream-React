@@ -1,0 +1,23 @@
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card {
+  box-shadow: none;
+  box-shadow: 1px 1px 2px var(--secondary-color),
+    -1px -1px 2px var(--secondary-color);
+}
+
+.card:hover {
+  box-shadow: 2px 1px 7px var(--secondary-color),
+    -2px -1px 7px var(--secondary-color);
+}
+
+.card-kebab {
+  font-size: 0.9em;
+}
+.curr-pointer {
+  cursor: pointer;
+}
