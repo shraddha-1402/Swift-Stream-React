@@ -1,0 +1,28 @@
+.chip-container {
+  width: 100%;
+  padding: 0.25rem 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin: 1rem 0;
+}
+.chip-input {
+  opacity: 0;
+  height: 0rem;
+  width: 0rem;
+}
+.chip {
+  display: inline-block;
+  background-color: #e0e0e0;
+  border-radius: 10rem;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+.chip:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+input[type="radio"]:checked.chip-input + .chip {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
