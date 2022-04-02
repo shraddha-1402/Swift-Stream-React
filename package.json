@@ -1,28 +1,29 @@
 {
-  "name": "video-library",
+  "name": "swift-videos",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "axios": "^0.21.4",
-    "dayjs": "^1.10.7",
+    "axios": "^0.26.1",
+    "dayjs": "^1.11.0",
     "jwt-decode": "^3.1.2",
     "jwt-encode": "^1.0.1",
-    "miragejs": "^0.1.41",
+    "miragejs": "^0.1.43",
     "mockman-js": "^1.0.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "uuid": "^8.3.2",
-    "web-vitals": "^1.0.1"
+    "react-icons": "^4.3.1",
+    "react-router-dom": "^6.2.2",
+    "react-scripts": "5.0.0",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -35,5 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-plugin-react": "^7.29.4"
   }
 }
