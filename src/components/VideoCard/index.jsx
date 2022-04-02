@@ -1,18 +1,26 @@
 import "./style.css";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaEllipsisV } from "react-icons/fa";
 import { CardModal } from "../CardModal";
+import { routes } from "../../constants";
 
-const VideoCard = ({ video}) => {
+const VideoCard = ({ video }) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const {thumbnail, title, creator, views, postedOn } = video;
+  const { _id, thumbnail, title, creator, views, postedOn } = video;
+  const navigate = useNavigate();
+
+  const handleVideoClick = () => {
+    navigate(`${routes.VIDEO_LISTING_PAGE}/${_id}`);
+  };
 
   return (
     <div className="card mw-16r">
       <img
         src={thumbnail}
         className="responsive-img curr-pointer"
+        onClick={handleVideoClick}
         alt="video-thumbnail"
       />
       <div className="p-0-5">
@@ -20,11 +28,7 @@ const VideoCard = ({ video}) => {
           <p className="text-ellipsis">{title}</p>
           <span className="ml-0-5 icon pos-rel">
             <FaEllipsisV onClick={() => setModalOpen(true)} />
-            {isModalOpen && (
-              <CardModal
-                setModalOpen={setModalOpen}
-              />
-            )}
+            {isModalOpen && <CardModal setModalOpen={setModalOpen} />}
           </span>
         </div>
         <p className="sm-text gray-text text-ellipsis">
