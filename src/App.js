@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { VideoListingPage } from "./pages";
+import { VideoListingPage, SingleVideoPage } from "./pages";
 import { Menubar, Navbar } from "./components";
 import { routes } from "./constants";
 
@@ -21,6 +21,10 @@ function App() {
             <Route
               element={<VideoListingPage />}
               path={routes.VIDEO_LISTING_PAGE}
+            />
+            <Route
+              element={<SingleVideoPage />}
+              path={`${routes.VIDEO_LISTING_PAGE}/:videoId`}
             />
           </Routes>
         </div>
