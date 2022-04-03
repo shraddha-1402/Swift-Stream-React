@@ -6,7 +6,7 @@ import { FaEllipsisV } from "react-icons/fa";
 import { CardModal } from "../CardModal";
 import { routes } from "../../constants";
 
-const VideoCard = ({ video }) => {
+const VideoCard = ({ video, ...rest }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const { _id, thumbnail, title, creator, views, postedOn } = video;
   const navigate = useNavigate();
@@ -28,7 +28,13 @@ const VideoCard = ({ video }) => {
           <p className="text-ellipsis">{title}</p>
           <span className="ml-0-5 icon pos-rel">
             <FaEllipsisV onClick={() => setModalOpen(true)} />
-            {isModalOpen && <CardModal setModalOpen={setModalOpen} />}
+            {isModalOpen && (
+              <CardModal
+                setModalOpen={setModalOpen}
+                videoId = {_id}
+                rest={rest}
+              />
+            )}
           </span>
         </div>
         <p className="sm-text gray-text text-ellipsis">

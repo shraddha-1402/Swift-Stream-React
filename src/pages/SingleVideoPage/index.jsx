@@ -3,27 +3,33 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { AiOutlineLike } from "react-icons/ai";
-import {
-  MdOutlineWatchLater,
-  MdOutlineVideoLibrary,
-} from "react-icons/md";
-import { useData } from "../../context";
+import { MdOutlineWatchLater, MdOutlineVideoLibrary } from "react-icons/md";
+import { useData, useAuth } from "../../context";
 import { VideoCard } from "../../components";
 import { getRandomVideos } from "../../utils/";
+import { addToHistory } from "../../utils/services";
 
 const SingleVideoPage = () => {
   const { videoId } = useParams();
   const {
-    dataState: { videos },
+    dataState: { videos, history },
+    dataDispatch,
   } = useData();
+
+  const {
+    authState: { token },
+  } = useAuth();
 
   const [currVideo, setCurrVideo] = useState({});
 
   useEffect(() => {
     (async () => {
-      const response = await axios.get(`/api/video/${videoId}`);
-      if (response.status === 200) setCurrVideo(response.data.video);
+      const {data, status} = await axios.get(`/api/video/${videoId}`);
+      if (status === 200) setCurrVideo(data.video);
+      const isInHistory = history.find((curr) => curr._id === videoId);
+      if (token && !isInHistory) addToHistory(data.video, token, dataDispatch);
     })();
+
     return () => setCurrVideo({});
   }, [videoId]);
 
@@ -48,7 +54,7 @@ const SingleVideoPage = () => {
                 <MdOutlineWatchLater className="sm-icon mr-1 icon" />
               </button>
               <button className="action-btns">
-              <MdOutlineVideoLibrary className="sm-icon icon" />
+                <MdOutlineVideoLibrary className="sm-icon icon" />
               </button>
             </div>
           </div>
