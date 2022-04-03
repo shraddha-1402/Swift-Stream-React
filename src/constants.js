@@ -10,6 +10,7 @@ const actionType = {
   DATA: {
     SET_VIDEOS: "SET_VIDEOS",
     RESET_DATA: "RESET_DATA",
+    UPDATE_HISTORY: "UPDATE_HISTORY",
   },
   AUTH: {
     USER_LOGIN: "USER_LOGIN",
@@ -22,6 +23,7 @@ const routes = {
   PROFILE_PAGE: "/profile-page",
   LOGIN_PAGE: "/login-page",
   SIGNUP_PAGE: "/signup-page",
+  HISTORY_PAGE: "/history-page",
 };
 
 const testCredentials = {
