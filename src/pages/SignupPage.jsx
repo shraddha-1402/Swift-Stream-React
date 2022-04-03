@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FormInput } from "../components";
 import { useAuth } from "../context/";
-import { authHandler } from "../utils/services";
+import { signupHandler } from "../utils/services";
 import { routes } from "../constants";
 
 const SignupPage = () => {
@@ -16,33 +16,11 @@ const SignupPage = () => {
     password: "",
   });
 
-  const handleInputChange = (event, property) => {
-    switch (property) {
-      case "firstName":
-        setSignupCredentials((creds) => ({
-          ...creds,
-          firstName: event.target.value,
-        }));
-        break;
-      case "lastName":
-        setSignupCredentials((creds) => ({
-          ...creds,
-          lastName: event.target.value,
-        }));
-        break;
-      case "email":
-        setSignupCredentials((creds) => ({
-          ...creds,
-          email: event.target.value,
-        }));
-        break;
-      case "password":
-        setSignupCredentials((creds) => ({
-          ...creds,
-          password: event.target.value,
-        }));
-        break;
-    }
+  const handleInputChange = (event) => {
+    setSignupCredentials((signupCredentials) => ({
+      ...signupCredentials,
+      [event.target.name]: event.target.value,
+    }));
   };
 
   const navigate = useNavigate();
@@ -50,17 +28,11 @@ const SignupPage = () => {
 
   const handleSignupSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const response = await authHandler(
-        { firstName, lastName, email, password },
-        "SIGNUP",
-        authDispatch
-      );
-      if (response.status === 201) navigate(routes.VIDEO_LISTING_PAGE);
-      else throw new Error(response.error);
-    } catch (error) {
-      console.log(error);
-    }
+    signupHandler(
+      { firstName, lastName, email, password },
+      authDispatch,
+      navigate
+    );
   };
 
   return (
@@ -74,7 +46,7 @@ const SignupPage = () => {
             minLength={3}
             placeholder="Jon"
             value={firstName}
-            property="firstName"
+            name="firstName"
             changeHandler={handleInputChange}
           />
 
@@ -84,7 +56,7 @@ const SignupPage = () => {
             minLength={3}
             placeholder="Doe"
             value={lastName}
-            property="lastName"
+            name="lastName"
             changeHandler={handleInputChange}
           />
 
@@ -93,7 +65,7 @@ const SignupPage = () => {
             type="email"
             value={email}
             placeholder="abc@gmail.com"
-            property="email"
+            name="email"
             changeHandler={handleInputChange}
           />
 
@@ -102,7 +74,7 @@ const SignupPage = () => {
             type="password"
             value={password}
             placeholder="minimum 8 characters"
-            property="password"
+            name="password"
             changeHandler={handleInputChange}
           />
 

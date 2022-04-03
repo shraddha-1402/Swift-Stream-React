@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { FormInput } from "../components";
 import { useAuth } from "../context";
-import { authHandler } from "../utils/services/";
+import { loginHandler } from "../utils/services/";
 import { routes, testCredentials } from "../constants";
 
 const LoginPage = () => {
@@ -11,16 +11,11 @@ const LoginPage = () => {
     password: "",
   });
 
-  const handleInputChange = (event, property) => {
-    property === "email"
-      ? setLoginCredentials((creds) => ({
-          ...creds,
-          email: event.target.value,
-        }))
-      : setLoginCredentials((creds) => ({
-          ...creds,
-          password: event.target.value,
-        }));
+  const handleInputChange = (event) => {
+    setLoginCredentials((loginCredentials) => ({
+      ...loginCredentials,
+      [event.target.name]: event.target.value,
+    }));
   };
 
   const navigate = useNavigate();
@@ -28,17 +23,7 @@ const LoginPage = () => {
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const response = await authHandler(
-        { email, password },
-        "LOGIN",
-        authDispatch
-      );
-      if (response.status === 200) navigate(routes.VIDEO_LISTING_PAGE);
-      else throw new Error(response.error);
-    } catch (error) {
-      console.log(error);
-    }
+    loginHandler({ email, password }, authDispatch, navigate);
   };
 
   return (
@@ -50,7 +35,7 @@ const LoginPage = () => {
             label="Email"
             type="email"
             value={email}
-            property="email"
+            name="email"
             changeHandler={handleInputChange}
           />
 
@@ -58,7 +43,7 @@ const LoginPage = () => {
             label="Password"
             type="password"
             value={password}
-            property="password"
+            name="password"
             changeHandler={handleInputChange}
           />
 

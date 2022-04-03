@@ -1,33 +1,50 @@
 import axios from "axios";
-import { actionType } from "../../constants";
+import { actionType, routes } from "../../constants";
 
-const authHandler = async (credentials, authAction, authDispatch) => {
+const loginHandler = async (credentials, authDispatch, navigate) => {
   try {
-    const response = await axios.post(`/api/auth/${authAction.toLowerCase()}`, {
+    const { data, status, statusText } = await axios.post("/api/auth/login", {
       ...credentials,
     });
-    const data = {
-      userInfo:
-        authAction === "LOGIN"
-          ? { ...response.data.foundUser }
-          : { ...response.data.createdUser },
-      token: response.data.encodedToken,
+    const userData = {
+      userInfo: data.foundUser,
+      token: data.encodedToken,
     };
 
-    localStorage.setItem("data", JSON.stringify(data));
-    if (response.status === 201 || response.status === 200)
+    localStorage.setItem("data", JSON.stringify(userData));
+    if (status === 200) {
       authDispatch({
         type: actionType.AUTH.USER_LOGIN,
-        payload: data,
+        payload: userData,
       });
-    return {
-      status: response.status,
-    };
+      navigate(routes.VIDEO_LISTING_PAGE);
+    } else throw new Error(statusText);
   } catch (error) {
-    return {
-      error: error,
-    };
+    console.log(error);
   }
 };
 
-export { authHandler };
+const signupHandler = async (credentials, authDispatch, navigate) => {
+  try {
+    const { data, status, statusText } = await axios.post("/api/auth/signup", {
+      ...credentials,
+    });
+    const userData = {
+      userInfo: data.createdUser,
+      token: data.encodedToken,
+    };
+
+    localStorage.setItem("data", JSON.stringify(userData));
+    if (status === 201) {
+      authDispatch({
+        type: actionType.AUTH.USER_LOGIN,
+        payload: userData,
+      });
+      navigate(routes.VIDEO_LISTING_PAGE);
+    } else throw new Error(statusText);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { loginHandler, signupHandler };
