@@ -1,12 +1,22 @@
 import "./App.css";
 import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom";
-import { VideoListingPage, SingleVideoPage } from "./pages";
+import { Route, Routes, Navigate } from "react-router-dom";
+import {
+  VideoListingPage,
+  SingleVideoPage,
+  LoginPage,
+  SignupPage,
+  ProfilePage,
+} from "./pages";
 import { Menubar, Navbar } from "./components";
+import { useAuth } from "./context";
 import { routes } from "./constants";
 
 function App() {
   const [menubarActive, setMenubarActive] = useState(false);
+  const {
+    authState: { token },
+  } = useAuth();
 
   return (
     <div>
@@ -25,6 +35,14 @@ function App() {
             <Route
               element={<SingleVideoPage />}
               path={`${routes.VIDEO_LISTING_PAGE}/:videoId`}
+            />
+            <Route element={<LoginPage />} path={routes.LOGIN_PAGE} />
+            <Route element={<SignupPage />} path={routes.SIGNUP_PAGE} />
+            <Route
+              element={
+                token ? <ProfilePage /> : <Navigate to={routes.LOGIN_PAGE} />
+              }
+              path={routes.PROFILE_PAGE}
             />
           </Routes>
         </div>

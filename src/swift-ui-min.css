@@ -199,9 +199,29 @@ i {
 .p-1 {
   padding: 1rem;
 }
+.px-0-5 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.px-0-25 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
 .px-1 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+.py-0-5 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.py-0-25 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.py-1 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 .w-30p {
   width: 30%;
@@ -513,7 +533,7 @@ i {
   background-color: var(--green);
 }
 .btn {
-  padding: 0.25rem 1rem;
+  padding: 0.5rem 1rem;
   font-size: 1rem;
   border-radius: 0.25rem;
   border: none;
