@@ -7,6 +7,7 @@ import {
   LoginPage,
   SignupPage,
   ProfilePage,
+  HistoryPage,
 } from "./pages";
 import { Menubar, Navbar } from "./components";
 import { useAuth } from "./context";
@@ -43,6 +44,12 @@ function App() {
                 token ? <ProfilePage /> : <Navigate to={routes.LOGIN_PAGE} />
               }
               path={routes.PROFILE_PAGE}
+            />
+            <Route
+              element={
+                token ? <HistoryPage /> : <Navigate to={routes.LOGIN_PAGE} />
+              }
+              path={routes.HISTORY_PAGE}
             />
           </Routes>
         </div>

@@ -1,7 +1,8 @@
 import "./style.css";
 import React from "react";
 import PropTypes from "prop-types";
-import { AiOutlineVideoCamera, AiOutlineUser  } from "react-icons/ai";
+import { AiOutlineVideoCamera, AiOutlineUser } from "react-icons/ai";
+import { MdHistory } from "react-icons/md";
 import { CustomNavLink } from "../index";
 import { useAuth } from "../../context";
 import { routes } from "../../constants";
@@ -34,6 +35,20 @@ const Menubar = ({ setMenubarActive, menubarActive }) => {
           </span>
         </CustomNavLink>
       </li>
+
+      <li>
+        <CustomNavLink
+          activeClassName="gray-bg text-bold-weight"
+          className="link menubar-items"
+          inactiveClassName="gray-text"
+          to={routes.HISTORY_PAGE}
+          clickHandler={clickHandler}
+        >
+          <span className="flex-row align-center">
+            <MdHistory className="xs-icon mr-0-25" /> History
+          </span>
+        </CustomNavLink>
+      </li>
       <li>
         <CustomNavLink
           activeClassName="gray-bg text-bold-weight"
@@ -48,6 +63,7 @@ const Menubar = ({ setMenubarActive, menubarActive }) => {
           </span>
         </CustomNavLink>
       </li>
+      
     </ul>
   );
 };
