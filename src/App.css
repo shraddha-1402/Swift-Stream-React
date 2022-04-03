@@ -24,6 +24,10 @@
   width: 0;
 }
 
+.sm-btn {
+  padding: 0.25rem 0.5rem;
+}
+
 @media (max-width: 850px) {
   .videos-container {
     width: 100%;

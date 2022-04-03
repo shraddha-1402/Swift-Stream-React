@@ -32,7 +32,7 @@ const ProfilePage = () => {
           </h3>
           <p> {email} </p>
           <button
-            className="btn btn-solid-danger my-1"
+            className="btn btn-solid-danger my-1 sm-btn"
             onClick={handleLogoutClick}
           >
             Logout
