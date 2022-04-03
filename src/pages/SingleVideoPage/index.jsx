@@ -33,8 +33,6 @@ const SingleVideoPage = () => {
     return () => setCurrVideo({});
   }, [videoId]);
 
-  useEffect(() => {});
-
   return (
     <>
       <div className="main-wrapper">
