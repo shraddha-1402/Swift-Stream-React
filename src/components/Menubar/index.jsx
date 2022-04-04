@@ -58,6 +58,20 @@ const Menubar = ({ setMenubarActive, menubarActive }) => {
           activeClassName="gray-bg text-bold-weight"
           className="link menubar-items"
           inactiveClassName="gray-text"
+          to={routes.WATCHLATER_PAGE}
+          clickHandler={clickHandler}
+        >
+          <span className="flex-row align-center">
+            <MdHistory className="xs-icon mr-0-25" /> Watch Later
+          </span>
+        </CustomNavLink>
+      </li>
+
+      <li>
+        <CustomNavLink
+          activeClassName="gray-bg text-bold-weight"
+          className="link menubar-items"
+          inactiveClassName="gray-text"
           to={routes.HISTORY_PAGE}
           clickHandler={clickHandler}
         >
