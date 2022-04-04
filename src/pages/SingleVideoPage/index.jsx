@@ -3,12 +3,16 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
-import { MdOutlineWatchLater, MdOutlineVideoLibrary } from "react-icons/md";
+import {
+  MdOutlineWatchLater,
+  MdWatchLater,
+  MdOutlineVideoLibrary,
+} from "react-icons/md";
 import { useData, useAuth } from "../../context";
 import { VideoCard } from "../../components";
 import { getRandomVideos } from "../../utils/";
 import { addToHistory } from "../../utils/services";
-import { useLikeVideos } from "../../hooks";
+import { useLikeVideos, useWatchLater } from "../../hooks";
 
 const SingleVideoPage = () => {
   const { videoId } = useParams();
@@ -23,15 +27,32 @@ const SingleVideoPage = () => {
   const [currVideo, setCurrVideo] = useState({});
   const [btnState, setBtnState] = useState({
     like: false,
+    watchlater: false,
   });
   const { isLiked, handlelikes } = useLikeVideos(currVideo);
+  const { inWatchLater, handleWatchLater } = useWatchLater(currVideo);
+
   const handleLikeBtnClick = () => {
     setBtnState((prev) => ({
+      ...prev,
       like: !prev.like,
     }));
     handlelikes();
     setBtnState((prev) => ({
+      ...prev,
       like: !prev.like,
+    }));
+  };
+
+  const handleWatchLaterBtnClick = () => {
+    setBtnState((prev) => ({
+      ...prev,
+      watchlater: !prev.watchlater,
+    }));
+    handleWatchLater();
+    setBtnState((prev) => ({
+      ...prev,
+      watchlater: !prev.watchlater,
     }));
   };
 
@@ -71,11 +92,19 @@ const SingleVideoPage = () => {
                 )}
               </button>
 
-              <button className="action-btns mr-1">
-                <MdOutlineWatchLater className="sm-icon " />
+              <button
+                className="action-btns mr-1"
+                disabled={btnState.watchlater}
+                onClick={handleWatchLaterBtnClick}
+              >
+                {inWatchLater ? (
+                  <MdWatchLater className="sm-icon" />
+                ) : (
+                  <MdOutlineWatchLater className="sm-icon" />
+                )}
               </button>
               <button className="action-btns">
-                <MdOutlineVideoLibrary className="sm-icon " />
+                <MdOutlineVideoLibrary className="sm-icon" />
               </button>
             </div>
           </div>
