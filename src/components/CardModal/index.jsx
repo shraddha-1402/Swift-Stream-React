@@ -5,7 +5,7 @@ import { useOnClickOutside } from "../../hooks";
 import { deleteFromHistory } from "../../utils/services";
 import { useAuth, useData } from "../../context";
 
-const CardModal = ({ videoId, setModalOpen, rest }) => {
+const CardModal = ({ video, setModalOpen, rest }) => {
   const { isInHistory } =
     Object.entries(rest).length > 0 ? rest : false;
     
@@ -29,7 +29,7 @@ const CardModal = ({ videoId, setModalOpen, rest }) => {
         <li
           className="card-modal-item red-text"
           onClick={() => {
-            deleteFromHistory(token, videoId, dataDispatch);
+            deleteFromHistory({token, videoId:video._id, dataDispatch});
             setModalOpen(false);
           }}
         >
@@ -41,7 +41,7 @@ const CardModal = ({ videoId, setModalOpen, rest }) => {
 };
 
 CardModal.propTypes = {
-  videoId: PropTypes.string,
+  video: PropTypes.object,
   setModalOpen: PropTypes.func,
   rest: PropTypes.any,
 };

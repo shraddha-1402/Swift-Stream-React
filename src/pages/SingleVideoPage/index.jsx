@@ -27,7 +27,7 @@ const SingleVideoPage = () => {
       const {data, status} = await axios.get(`/api/video/${videoId}`);
       if (status === 200) setCurrVideo(data.video);
       const isInHistory = history.find((curr) => curr._id === videoId);
-      if (token && !isInHistory) addToHistory(data.video, token, dataDispatch);
+      if (token && !isInHistory) addToHistory({video: data.video, token, dataDispatch});
     })();
 
     return () => setCurrVideo({});
