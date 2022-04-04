@@ -2,7 +2,7 @@ import { actionType } from "../constants";
 
 const dataReducer = (state, action) => {
   const {
-    DATA: { SET_VIDEOS, RESET_DATA, UPDATE_HISTORY },
+    DATA: { SET_VIDEOS, RESET_DATA, UPDATE_HISTORY, UPDATE_LIKES },
   } = actionType;
   switch (action.type) {
     case SET_VIDEOS:
@@ -22,6 +22,11 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         history: action.payload,
+      };
+    case UPDATE_LIKES:
+      return {
+        ...state,
+        likes: action.payload.likes,
       };
 
     default:

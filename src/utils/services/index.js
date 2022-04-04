@@ -5,3 +5,8 @@ export {
   deleteFromHistoryHandler,
   clearHistoryHandler,
 } from "./historyHandler";
+export {
+  likeVideoHandler,
+  dislikeVideoHandler,
+  getLikedVideosHandler,
+} from "./likesHandler";

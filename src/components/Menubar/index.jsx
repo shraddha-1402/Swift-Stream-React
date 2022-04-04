@@ -1,7 +1,11 @@
 import "./style.css";
 import React from "react";
 import PropTypes from "prop-types";
-import { AiOutlineVideoCamera, AiOutlineUser } from "react-icons/ai";
+import {
+  AiOutlineVideoCamera,
+  AiOutlineUser,
+  AiOutlineLike,
+} from "react-icons/ai";
 import { MdHistory } from "react-icons/md";
 import { CustomNavLink } from "../index";
 import { useAuth } from "../../context";
@@ -35,6 +39,19 @@ const Menubar = ({ setMenubarActive, menubarActive }) => {
           </span>
         </CustomNavLink>
       </li>
+      <li>
+        <CustomNavLink
+          activeClassName="gray-bg text-bold-weight"
+          className="link menubar-items"
+          inactiveClassName="gray-text"
+          to={routes.LIKED_VIDEOS_PAGE}
+          clickHandler={clickHandler}
+        >
+          <span className="flex-row align-center">
+            <AiOutlineLike className="xs-icon mr-0-25" /> Liked Videos
+          </span>
+        </CustomNavLink>
+      </li>
 
       <li>
         <CustomNavLink
@@ -63,7 +80,6 @@ const Menubar = ({ setMenubarActive, menubarActive }) => {
           </span>
         </CustomNavLink>
       </li>
-      
     </ul>
   );
 };
