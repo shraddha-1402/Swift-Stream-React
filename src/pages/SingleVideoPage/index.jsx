@@ -2,12 +2,13 @@ import "./style.css";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { AiOutlineLike } from "react-icons/ai";
+import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { MdOutlineWatchLater, MdOutlineVideoLibrary } from "react-icons/md";
 import { useData, useAuth } from "../../context";
 import { VideoCard } from "../../components";
 import { getRandomVideos } from "../../utils/";
 import { addToHistory } from "../../utils/services";
+import { useLikeVideos } from "../../hooks";
 
 const SingleVideoPage = () => {
   const { videoId } = useParams();
@@ -15,16 +16,28 @@ const SingleVideoPage = () => {
     dataState: { videos, history },
     dataDispatch,
   } = useData();
-
   const {
     authState: { token },
   } = useAuth();
 
   const [currVideo, setCurrVideo] = useState({});
+  const [btnState, setBtnState] = useState({
+    like: false,
+  });
+  const { isLiked, handlelikes } = useLikeVideos(currVideo);
+  const handleLikeBtnClick = () => {
+    setBtnState((prev) => ({
+      like: !prev.like,
+    }));
+    handlelikes();
+    setBtnState((prev) => ({
+      like: !prev.like,
+    }));
+  };
 
   useEffect(() => {
     (async () => {
-      const {data, status} = await axios.get(`/api/video/${videoId}`);
+      const { data, status } = await axios.get(`/api/video/${videoId}`);
       if (status === 200) setCurrVideo(data.video);
       const isInHistory = history.find((curr) => curr._id === videoId);
       if (token && !isInHistory) addToHistory(data.video, token, dataDispatch);
@@ -46,15 +59,23 @@ const SingleVideoPage = () => {
             <div className="gray-text"> 4 months ago | 13M views </div>
 
             <div>
-              <button className="action-btns">
-                <AiOutlineLike className="sm-icon mr-1 icon" />
+              <button
+                className="action-btns mr-1"
+                disabled={btnState.like}
+                onClick={handleLikeBtnClick}
+              >
+                {isLiked ? (
+                  <AiFillLike className="sm-icon red-text" />
+                ) : (
+                  <AiOutlineLike className="sm-icon" />
+                )}
               </button>
 
-              <button className="action-btns">
-                <MdOutlineWatchLater className="sm-icon mr-1 icon" />
+              <button className="action-btns mr-1">
+                <MdOutlineWatchLater className="sm-icon " />
               </button>
               <button className="action-btns">
-                <MdOutlineVideoLibrary className="sm-icon icon" />
+                <MdOutlineVideoLibrary className="sm-icon " />
               </button>
             </div>
           </div>
