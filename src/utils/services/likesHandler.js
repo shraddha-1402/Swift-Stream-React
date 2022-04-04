@@ -1,9 +1,26 @@
 import axios from "axios";
 import { actionType } from "../../constants";
 
+const getLikedVideosHandler = async (token, dataDispatch) => {
+  try {
+    const { data, status, statusText } = await axios.get("/api/user/likes", {
+      headers: { authorization: token },
+    });
+    if (status === 200)
+      dataDispatch({
+        type: actionType.DATA.UPDATE_LIKES,
+        payload: {
+          likes: data.likes,
+        },
+      });
+    else throw new Error(statusText);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const likeVideoHandler = async (video, token, dataDispatch) => {
   try {
-    console.log("like handler");
     const { data, status, statusText } = await axios.post(
       "/api/user/likes",
       {
@@ -47,4 +64,4 @@ const dislikeVideoHandler = async (video, token, dataDispatch) => {
   }
 };
 
-export { likeVideoHandler, dislikeVideoHandler };
+export { likeVideoHandler, dislikeVideoHandler, getLikedVideosHandler };
