@@ -2,7 +2,14 @@ import { actionType } from "../constants";
 
 const dataReducer = (state, action) => {
   const {
-    DATA: { SET_VIDEOS, RESET_DATA, UPDATE_HISTORY, UPDATE_LIKES },
+    DATA: {
+      SET_VIDEOS,
+      RESET_DATA,
+      UPDATE_HISTORY,
+      UPDATE_LIKES,
+      UPDATE_PLAYLISTS,
+      UPDATE_PLAYLIST_VIDEOS,
+    },
   } = actionType;
   switch (action.type) {
     case SET_VIDEOS:
@@ -27,6 +34,19 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         likes: action.payload.likes,
+      };
+    case UPDATE_PLAYLISTS: {
+      return {
+        ...state,
+        playlists: action.payload,
+      };
+    }
+    case UPDATE_PLAYLIST_VIDEOS:
+      return {
+        ...state,
+        playlists: state.playlists.map((playlist) =>
+          playlist._id === action.payload._id ? action.payload : playlist
+        ),
       };
 
     default:
