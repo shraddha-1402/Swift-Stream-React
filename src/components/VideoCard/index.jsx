@@ -31,7 +31,7 @@ const VideoCard = ({ video, ...rest }) => {
             {isModalOpen && (
               <CardModal
                 setModalOpen={setModalOpen}
-                videoId = {_id}
+                video = {video}
                 rest={rest}
               />
             )}
