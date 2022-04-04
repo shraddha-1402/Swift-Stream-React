@@ -9,3 +9,8 @@ export {
   dislikeVideoHandler,
   getLikedVideosHandler,
 } from "./likesHandler";
+export {
+  getAllWatchLaterVideos,
+  addToWatchlater,
+  removeFromWatchlater,
+} from "./watchLaterHandler";
