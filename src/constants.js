@@ -11,6 +11,7 @@ const actionType = {
     SET_VIDEOS: "SET_VIDEOS",
     RESET_DATA: "RESET_DATA",
     UPDATE_HISTORY: "UPDATE_HISTORY",
+    UPDATE_LIKES: "UPDATE_LIKES",
   },
   AUTH: {
     USER_LOGIN: "USER_LOGIN",
@@ -24,6 +25,7 @@ const routes = {
   LOGIN_PAGE: "/login-page",
   SIGNUP_PAGE: "/signup-page",
   HISTORY_PAGE: "/history-page",
+  LIKED_VIDEOS_PAGE: "/liked-videos/page",
 };
 
 const testCredentials = {
