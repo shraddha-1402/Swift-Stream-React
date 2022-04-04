@@ -1,8 +1,9 @@
 export { loginHandler, signupHandler } from "./authHandler";
 export {
-  addToHistory,
-  deleteFromHistory,
-  clearHistory,
+  getAllHistoryVideosHandler,
+  addToHistoryHandler,
+  deleteFromHistoryHandler,
+  clearHistoryHandler,
 } from "./historyHandler";
 export {
   likeVideoHandler,

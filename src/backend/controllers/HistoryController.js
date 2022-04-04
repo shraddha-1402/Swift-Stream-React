@@ -113,7 +113,7 @@ export const removeVideoFromHistoryHandler = function (schema, request) {
  * send DELETE Request at /api/user/history/all
  * */
 
-export const clearHistoryHandler = function (schema, request) {
+export const clearHistoryHandlerHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
   try {
     if (!user) {

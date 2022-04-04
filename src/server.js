@@ -7,7 +7,7 @@ import {
   getHistoryVideosHandler,
   addVideoToHistoryHandler,
   removeVideoFromHistoryHandler,
-  clearHistoryHandler,
+  clearHistoryHandlerHandler,
 } from "./backend/controllers/HistoryController";
 import {
   getAllVideosHandler,
@@ -130,7 +130,7 @@ export function makeServer({ environment = "development" } = {}) {
         "/user/history/:videoId",
         removeVideoFromHistoryHandler.bind(this)
       );
-      this.delete("/user/history/all", clearHistoryHandler.bind(this));
+      this.delete("/user/history/all", clearHistoryHandlerHandler.bind(this));
     },
   });
 }
