@@ -10,3 +10,7 @@ export {
   dislikeVideoHandler,
   getLikedVideosHandler,
 } from "./likesHandler";
+export {
+  getAllPlaylistHandler,
+  deletePlaylistHandler,
+} from "./playlistHandler";
