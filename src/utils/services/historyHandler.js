@@ -1,7 +1,7 @@
 import axios from "axios";
 import { actionType } from "../../constants";
 
-const getAllHistoryVideos = async ({ token, dataDispatch }) => {
+const getAllHistoryVideosHandler = async ({ token, dataDispatch }) => {
   try {
     const { data, status, statusText } = await axios.get("/api/user/history", {
       headers: { authorization: token },
@@ -17,7 +17,7 @@ const getAllHistoryVideos = async ({ token, dataDispatch }) => {
   }
 };
 
-const addToHistory = async ({ video, token, dataDispatch }) => {
+const addToHistoryHandler = async ({ video, token, dataDispatch }) => {
   try {
     const { data, status, statusText } = await axios.post(
       "/api/user/history",
@@ -39,7 +39,7 @@ const addToHistory = async ({ video, token, dataDispatch }) => {
   }
 };
 
-const deleteFromHistory = async ({ token, videoId, dataDispatch }) => {
+const deleteFromHistoryHandler = async ({ token, videoId, dataDispatch }) => {
   try {
     const { data, status, statusText } = await axios.delete(
       `/api/user/history/${videoId}`,
@@ -60,7 +60,7 @@ const deleteFromHistory = async ({ token, videoId, dataDispatch }) => {
   }
 };
 
-const clearHistory = async ({ token, dataDispatch }) => {
+const clearHistoryHandler = async ({ token, dataDispatch }) => {
   try {
     const { data, status, statusText } = await axios.delete(
       "/api/user/history/all",
@@ -81,4 +81,9 @@ const clearHistory = async ({ token, dataDispatch }) => {
   }
 };
 
-export { getAllHistoryVideos, addToHistory, deleteFromHistory, clearHistory };
+export {
+  getAllHistoryVideosHandler,
+  addToHistoryHandler,
+  deleteFromHistoryHandler,
+  clearHistoryHandler,
+};

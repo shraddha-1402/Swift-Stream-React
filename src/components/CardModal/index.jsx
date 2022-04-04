@@ -2,7 +2,7 @@ import "./style.css";
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import { useOnClickOutside } from "../../hooks";
-import { deleteFromHistory } from "../../utils/services";
+import { deleteFromHistoryHandler } from "../../utils/services";
 import { useAuth, useData } from "../../context";
 
 const CardModal = ({ video, setModalOpen, rest }) => {
@@ -29,7 +29,7 @@ const CardModal = ({ video, setModalOpen, rest }) => {
         <li
           className="card-modal-item red-text"
           onClick={() => {
-            deleteFromHistory({token, videoId:video._id, dataDispatch});
+            deleteFromHistoryHandler({token, videoId:video._id, dataDispatch});
             setModalOpen(false);
           }}
         >

@@ -7,7 +7,7 @@ import { MdOutlineWatchLater, MdOutlineVideoLibrary } from "react-icons/md";
 import { useData, useAuth } from "../../context";
 import { VideoCard } from "../../components";
 import { getRandomVideos } from "../../utils/";
-import { addToHistory } from "../../utils/services";
+import { addToHistoryHandler } from "../../utils/services";
 
 const SingleVideoPage = () => {
   const { videoId } = useParams();
@@ -27,7 +27,7 @@ const SingleVideoPage = () => {
       const {data, status} = await axios.get(`/api/video/${videoId}`);
       if (status === 200) setCurrVideo(data.video);
       const isInHistory = history.find((curr) => curr._id === videoId);
-      if (token && !isInHistory) addToHistory({video: data.video, token, dataDispatch});
+      if (token && !isInHistory) addToHistoryHandler({video: data.video, token, dataDispatch});
     })();
 
     return () => setCurrVideo({});
