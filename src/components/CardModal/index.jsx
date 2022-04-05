@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 import { useOnClickOutside } from "../../hooks";
 import { deleteFromHistoryHandler } from "../../utils/services";
 import { useAuth, useData } from "../../context";
+import { useWatchLater } from "../../hooks/useWatchLater";
 
 const CardModal = ({ video, setModalOpen, rest }) => {
-  const { isInHistory } =
-    Object.entries(rest).length > 0 ? rest : false;
-    
+  const { isInHistory } = Object.entries(rest).length > 0 ? rest : false;
+
   const ref = useRef();
   useOnClickOutside(ref, () => setModalOpen(false));
 
@@ -17,10 +17,20 @@ const CardModal = ({ video, setModalOpen, rest }) => {
     authState: { token },
   } = useAuth();
 
+  const { inWatchLater, handleWatchLater } = useWatchLater(video);
+
   return (
     <ul ref={ref} className="list-style-none pos-abs card-modal">
-      <li className="card-modal-item" onClick={() => setModalOpen(false)}>
-        Add to Watch Later
+      <li
+        className={
+          inWatchLater ? "card-modal-item red-text" : "card-modal-item"
+        }
+        onClick={() => {
+          handleWatchLater();
+          setModalOpen(false);
+        }}
+      >
+        {inWatchLater ? "Remove from Watch Later" : "Add to Watch Later"}
       </li>
       <li className="card-modal-item" onClick={() => setModalOpen(false)}>
         Save to Playlist
@@ -29,7 +39,11 @@ const CardModal = ({ video, setModalOpen, rest }) => {
         <li
           className="card-modal-item red-text"
           onClick={() => {
-            deleteFromHistoryHandler({token, videoId:video._id, dataDispatch});
+            deleteFromHistoryHandler({
+              token,
+              videoId: video._id,
+              dataDispatch,
+            });
             setModalOpen(false);
           }}
         >

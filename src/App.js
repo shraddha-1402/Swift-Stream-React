@@ -9,6 +9,7 @@ import {
   ProfilePage,
   HistoryPage,
   LikedVideosPage,
+  WatchlaterPage,
 } from "./pages";
 import { Menubar, Navbar } from "./components";
 import { useAuth } from "./context";
@@ -56,6 +57,14 @@ function App() {
               }
               path={routes.LIKED_VIDEOS_PAGE}
             />
+
+            <Route
+              element={
+                token ? <WatchlaterPage /> : <Navigate to={routes.LOGIN_PAGE} />
+              }
+              path={routes.WATCHLATER_PAGE}
+            />
+
             <Route
               element={
                 token ? <HistoryPage /> : <Navigate to={routes.LOGIN_PAGE} />
