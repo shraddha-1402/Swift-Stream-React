@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { VideoCard } from "../components";
 import { routes } from "../constants";
-import { useAuth } from "../context";
+import { useAuth, useData } from "../context";
 
 const SinglePlaylistPage = () => {
   const navigate = useNavigate();
@@ -11,6 +11,10 @@ const SinglePlaylistPage = () => {
   const {
     authState: { token },
   } = useAuth();
+
+  const {
+    dataState: { playlists },
+  } = useData();
 
   const [currPlaylist, setCurrPlalist] = useState({});
 
@@ -30,7 +34,7 @@ const SinglePlaylistPage = () => {
         console.log(error);
       }
     })();
-  }, [playlistId]);
+  }, [playlistId, playlists]);
 
   return (
     <div>
