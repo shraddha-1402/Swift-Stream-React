@@ -24,13 +24,6 @@
   gap: 1rem;
 }
 
-.action-btns {
-  border: 0px white;
-  outline: none;
-  background-color: transparent;
-  cursor: pointer;
-}
-
 @media (max-width: 700px) {
   .single-video {
     width: 100%;

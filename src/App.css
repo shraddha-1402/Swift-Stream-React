@@ -28,6 +28,13 @@
   padding: 0.25rem 0.5rem;
 }
 
+.action-btns {
+  border: 0px white;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 .curr-pointer {
   cursor: pointer;
 }
