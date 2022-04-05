@@ -73,7 +73,6 @@ const addToPlaylistHandler = async ({
       { video: selectedVideo },
       { headers: { authorization: token } }
     );
-    console.log(data);
     if (status === 201)
       dataDispatch({
         type: actionType.DATA.UPDATE_PLAYLIST_VIDEOS,

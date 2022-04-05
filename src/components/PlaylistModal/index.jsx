@@ -34,7 +34,6 @@ const PlaylistModal = () => {
   };
 
   const handlePlaylistCheckbox = (event, playlist) => {
-    console.log(event.target.checked);
     if (event.target.checked)
       addToPlaylistHandler({ playlist, selectedVideo, token, dataDispatch });
     else
