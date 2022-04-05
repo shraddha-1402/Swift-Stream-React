@@ -28,6 +28,10 @@
   padding: 0.25rem 0.5rem;
 }
 
+.curr-pointer {
+  cursor: pointer;
+}
+
 @media (max-width: 850px) {
   .videos-container {
     width: 100%;
