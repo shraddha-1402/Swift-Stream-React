@@ -10,6 +10,7 @@ import {
   HistoryPage,
   LikedVideosPage,
   PlaylistPage,
+  SinglePlaylistPage,
 } from "./pages";
 import { Menubar, Navbar, PlaylistModal } from "./components";
 import { useAuth, usePlaylist } from "./context";
@@ -69,6 +70,16 @@ function App() {
                 token ? <PlaylistPage /> : <Navigate to={routes.LOGIN_PAGE} />
               }
               path={routes.PLAYLIST_PAGE}
+            />
+            <Route
+              element={
+                token ? (
+                  <SinglePlaylistPage />
+                ) : (
+                  <Navigate to={routes.LOGIN_PAGE} />
+                )
+              }
+              path={`${routes.PLAYLIST_PAGE}/:playlistId`}
             />
             <Route
               element={
