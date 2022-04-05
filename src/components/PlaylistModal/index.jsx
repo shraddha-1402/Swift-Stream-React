@@ -57,20 +57,16 @@ const PlaylistModal = () => {
             const { title, _id } = playlist;
             const inPlaylist = checkInPlaylist(playlist);
             return (
-              <div className="my-0-5" key={_id}>
-                <label htmlFor={_id}>
-                  <input
-                    className="mr-0-25"
-                    type="checkbox"
-                    checked={inPlaylist}
-                    id={_id}
-                    onChange={(event) =>
-                      handlePlaylistCheckbox(event, playlist)
-                    }
-                  />
-                  {title}
-                </label>
-              </div>
+              <label key={_id} htmlFor={_id} className="playlist-list-item">
+                <input
+                  className="mr-0-25"
+                  type="checkbox"
+                  checked={inPlaylist}
+                  id={_id}
+                  onChange={(event) => handlePlaylistCheckbox(event, playlist)}
+                />
+                {title}
+              </label>
             );
           })
         ) : (
