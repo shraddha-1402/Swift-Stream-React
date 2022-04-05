@@ -1,10 +1,10 @@
 import "./style.css";
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { useOnClickOutside } from "../../hooks";
+import { useWatchLater, useOnClickOutside } from "../../hooks";
 import { deleteFromHistoryHandler } from "../../utils/services";
 import { useAuth, useData, usePlaylist } from "../../context";
-import { useNavigate } from "react-router-dom";
 import { routes } from "../../constants";
 
 const CardModal = ({ video, setModalOpen, rest }) => {
@@ -29,11 +29,20 @@ const CardModal = ({ video, setModalOpen, rest }) => {
       setShowPlaylistModal(true);
     }
   };
+  const { inWatchLater, handleWatchLater } = useWatchLater(video);
 
   return (
     <ul ref={ref} className="list-style-none pos-abs card-modal">
-      <li className="card-modal-item" onClick={() => setModalOpen(false)}>
-        Add to Watch Later
+      <li
+        className={
+          inWatchLater ? "card-modal-item red-text" : "card-modal-item"
+        }
+        onClick={() => {
+          handleWatchLater();
+          setModalOpen(false);
+        }}
+      >
+        {inWatchLater ? "Remove from Watch Later" : "Add to Watch Later"}
       </li>
       <li className="card-modal-item" onClick={handlePlaylistClick}>
         Save to Playlist

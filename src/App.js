@@ -11,6 +11,7 @@ import {
   LikedVideosPage,
   PlaylistPage,
   SinglePlaylistPage,
+  WatchlaterPage,
 } from "./pages";
 import { Menubar, Navbar, PlaylistModal } from "./components";
 import { useAuth, usePlaylist } from "./context";
@@ -65,6 +66,14 @@ function App() {
               }
               path={routes.LIKED_VIDEOS_PAGE}
             />
+
+            <Route
+              element={
+                token ? <WatchlaterPage /> : <Navigate to={routes.LOGIN_PAGE} />
+              }
+              path={routes.WATCHLATER_PAGE}
+            />
+
             <Route
               element={
                 token ? <PlaylistPage /> : <Navigate to={routes.LOGIN_PAGE} />

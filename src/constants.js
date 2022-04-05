@@ -14,6 +14,7 @@ const actionType = {
     UPDATE_LIKES: "UPDATE_LIKES",
     UPDATE_PLAYLISTS: "UPDATE_PLAYLISTS",
     UPDATE_PLAYLIST_VIDEOS: "UPDATE_PLAYLIST_VIDEOS",
+    UPDATE_WATCH_LATER: "UPDATE_WATCH_LATER",
   },
   AUTH: {
     USER_LOGIN: "USER_LOGIN",
@@ -29,6 +30,7 @@ const routes = {
   HISTORY_PAGE: "/history-page",
   LIKED_VIDEOS_PAGE: "/liked-videos/page",
   PLAYLIST_PAGE: "/playlist-page",
+  WATCHLATER_PAGE: "/watchlater-page",
 };
 
 const testCredentials = {

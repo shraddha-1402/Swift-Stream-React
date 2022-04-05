@@ -9,6 +9,7 @@ const dataReducer = (state, action) => {
       UPDATE_LIKES,
       UPDATE_PLAYLISTS,
       UPDATE_PLAYLIST_VIDEOS,
+      UPDATE_WATCH_LATER,
     },
   } = actionType;
   switch (action.type) {
@@ -47,6 +48,11 @@ const dataReducer = (state, action) => {
         playlists: state.playlists.map((playlist) =>
           playlist._id === action.payload._id ? action.payload : playlist
         ),
+      };
+    case UPDATE_WATCH_LATER:
+      return {
+        ...state,
+        watchlater: action.payload.watchlater,
       };
 
     default:

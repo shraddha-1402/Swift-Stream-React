@@ -17,3 +17,8 @@ export {
   addToPlaylistHandler,
   deleteFromPlaylistHandler,
 } from "./playlistHandler";
+export {
+  getAllWatchLaterVideos,
+  addToWatchlater,
+  removeFromWatchlater,
+} from "./watchLaterHandler";
