@@ -1,17 +1,19 @@
 import "./style.css";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { MdOutlineWatchLater, MdOutlineVideoLibrary } from "react-icons/md";
-import { useData, useAuth } from "../../context";
+import { useData, useAuth, usePlaylist } from "../../context";
 import { VideoCard } from "../../components";
 import { getRandomVideos } from "../../utils/";
 import { addToHistoryHandler } from "../../utils/services";
 import { useLikeVideos } from "../../hooks";
+import { routes } from "../../constants";
 
 const SingleVideoPage = () => {
   const { videoId } = useParams();
+  const navigate = useNavigate();
   const {
     dataState: { videos, history },
     dataDispatch,
@@ -33,6 +35,16 @@ const SingleVideoPage = () => {
     setBtnState((prev) => ({
       like: !prev.like,
     }));
+  };
+
+  const { setShowPlaylistModal, setSelectedVideo } = usePlaylist();
+
+  const handlePlaylistClick = () => {
+    if (!token) navigate(routes.LOGIN_PAGE);
+    else {
+      setSelectedVideo(currVideo);
+      setShowPlaylistModal(true);
+    }
   };
 
   useEffect(() => {
@@ -75,7 +87,7 @@ const SingleVideoPage = () => {
               <button className="action-btns mr-1">
                 <MdOutlineWatchLater className="sm-icon " />
               </button>
-              <button className="action-btns">
+              <button className="action-btns" onClick={handlePlaylistClick}>
                 <MdOutlineVideoLibrary className="sm-icon " />
               </button>
             </div>
