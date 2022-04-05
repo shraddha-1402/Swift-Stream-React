@@ -14,6 +14,7 @@ const defaultDataState = {
   watchlater: userData ? userData.userInfo.watchlater : [],
   likes: userData ? userData.userInfo.likes : [],
   playlists: userData ? userData.userInfo.playlists : [],
+  searchText: "",
 };
 
 const DataProvider = ({ children }) => {
