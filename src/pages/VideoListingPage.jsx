@@ -10,6 +10,7 @@ const VideoListingPage = () => {
   const [filterCategory, setFilterCategory] = useState({ type: "All" });
 
   const filteredVideos = getCategoryFilteredVideos(filterCategory.type, videos);
+  console.log(filteredVideos);
 
   return (
     <div>
