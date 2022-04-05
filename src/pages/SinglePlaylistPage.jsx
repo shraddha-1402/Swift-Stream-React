@@ -41,7 +41,7 @@ const SinglePlaylistPage = () => {
     <div>
       {!!Object.entries(currPlaylist).length && (
         <>
-          <div className="flex-row">
+          <div className="flex-row mb-1">
             <button
               className="action-btns mr-1 py-0-25"
               onClick={() => navigate(routes.PLAYLIST_PAGE)}
@@ -49,7 +49,8 @@ const SinglePlaylistPage = () => {
               <FaArrowLeft className="xs-icon" />
             </button>
             <h3>
-              {currPlaylist.title} ( {currPlaylist.videos.length} )
+              {currPlaylist.title.toUpperCase()} ( {currPlaylist.videos.length}{" "}
+              )
             </h3>
           </div>
           <div className="grid-layout">
