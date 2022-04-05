@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { useData } from "../context";
 import { CategoryChip, VideoCard } from "../components/";
-import { getCategoryFilteredVideos } from "../utils";
+import { getCategoryFilteredVideos, getSearchFilteredVideos } from "../utils";
 
 const VideoListingPage = () => {
   const {
-    dataState: { videos },
+    dataState: { videos, searchText },
   } = useData();
   const [filterCategory, setFilterCategory] = useState({ type: "All" });
-
-  const filteredVideos = getCategoryFilteredVideos(filterCategory.type, videos);
-  console.log(filteredVideos);
+  const searchedVideos = getSearchFilteredVideos({ searchText, videos });
+  const filteredVideos = getCategoryFilteredVideos({
+    category: filterCategory.type,
+    videos: searchedVideos,
+  });
 
   return (
     <div>
