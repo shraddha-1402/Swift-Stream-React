@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import { VideoCard } from "../components";
 import { routes } from "../constants";
@@ -40,9 +41,17 @@ const SinglePlaylistPage = () => {
     <div>
       {!!Object.entries(currPlaylist).length && (
         <>
-          <h3>
-            {currPlaylist.title} ( {currPlaylist.videos.length} )
-          </h3>
+          <div className="flex-row">
+            <button
+              className="action-btns mr-1 py-0-25"
+              onClick={() => navigate(routes.PLAYLIST_PAGE)}
+            >
+              <FaArrowLeft className="xs-icon" />
+            </button>
+            <h3>
+              {currPlaylist.title} ( {currPlaylist.videos.length} )
+            </h3>
+          </div>
           <div className="grid-layout">
             {currPlaylist.videos.map((video) => (
               <VideoCard key={video._id} video={video} />
