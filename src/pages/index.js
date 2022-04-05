@@ -5,4 +5,6 @@ export { SignupPage } from "./SignupPage";
 export { ProfilePage } from "./ProfilePage";
 export { HistoryPage } from "./HistoryPage";
 export { LikedVideosPage } from "./LikedVideosPage";
+export { PlaylistPage } from "./PlaylistPage";
+export { SinglePlaylistPage } from "./SinglePlaylistPage";
 export { WatchlaterPage } from "./WatchlaterPage";

@@ -1,0 +1,31 @@
+.playlist-info {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 0.25rem;
+  background-color: var(--black);
+  color: var(--white);
+  text-align: center;
+  border-radius: inherit;
+  user-select: none;
+}
+
+.thumbnail {
+  border-radius: inherit;
+}
+
+.playlist-delete {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  border-radius: 50%;
+  width: 1.75rem;
+  height: 1.75rem;
+  line-height: 2.25rem;
+  cursor: pointer;
+  color: var(--white);
+  background-color: rgba(44, 44, 44, 0.616);
+  outline: none;
+  border: 0;
+}

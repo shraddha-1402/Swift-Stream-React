@@ -9,10 +9,12 @@ import {
   ProfilePage,
   HistoryPage,
   LikedVideosPage,
+  PlaylistPage,
+  SinglePlaylistPage,
   WatchlaterPage,
 } from "./pages";
-import { Menubar, Navbar } from "./components";
-import { useAuth } from "./context";
+import { Menubar, Navbar, PlaylistModal } from "./components";
+import { useAuth, usePlaylist } from "./context";
 import { routes } from "./constants";
 
 function App() {
@@ -21,9 +23,16 @@ function App() {
     authState: { token },
   } = useAuth();
 
+  const { showPlaylistModal } = usePlaylist();
+
   return (
     <div>
       <Navbar setMenubarActive={setMenubarActive} />
+      {!!showPlaylistModal && (
+        <div className="playlist-overlay">
+          <PlaylistModal />
+        </div>
+      )}
       <main className="flex-row">
         <Menubar
           setMenubarActive={setMenubarActive}
@@ -65,6 +74,22 @@ function App() {
               path={routes.WATCHLATER_PAGE}
             />
 
+            <Route
+              element={
+                token ? <PlaylistPage /> : <Navigate to={routes.LOGIN_PAGE} />
+              }
+              path={routes.PLAYLIST_PAGE}
+            />
+            <Route
+              element={
+                token ? (
+                  <SinglePlaylistPage />
+                ) : (
+                  <Navigate to={routes.LOGIN_PAGE} />
+                )
+              }
+              path={`${routes.PLAYLIST_PAGE}/:playlistId`}
+            />
             <Route
               element={
                 token ? <HistoryPage /> : <Navigate to={routes.LOGIN_PAGE} />

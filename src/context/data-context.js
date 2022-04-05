@@ -13,6 +13,7 @@ const defaultDataState = {
   history: userData ? userData.userInfo.history : [],
   watchlater: userData ? userData.userInfo.watchlater : [],
   likes: userData ? userData.userInfo.likes : [],
+  playlists: userData ? userData.userInfo.playlists : [],
 };
 
 const DataProvider = ({ children }) => {

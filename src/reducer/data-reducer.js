@@ -7,6 +7,8 @@ const dataReducer = (state, action) => {
       RESET_DATA,
       UPDATE_HISTORY,
       UPDATE_LIKES,
+      UPDATE_PLAYLISTS,
+      UPDATE_PLAYLIST_VIDEOS,
       UPDATE_WATCH_LATER,
     },
   } = actionType;
@@ -33,6 +35,19 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         likes: action.payload.likes,
+      };
+    case UPDATE_PLAYLISTS: {
+      return {
+        ...state,
+        playlists: action.payload,
+      };
+    }
+    case UPDATE_PLAYLIST_VIDEOS:
+      return {
+        ...state,
+        playlists: state.playlists.map((playlist) =>
+          playlist._id === action.payload._id ? action.payload : playlist
+        ),
       };
     case UPDATE_WATCH_LATER:
       return {

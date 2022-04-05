@@ -1,21 +1,23 @@
 import "./style.css";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import {
   MdOutlineWatchLater,
   MdWatchLater,
   MdOutlineVideoLibrary,
 } from "react-icons/md";
-import { useData, useAuth } from "../../context";
 import { VideoCard } from "../../components";
 import { getRandomVideos } from "../../utils/";
 import { useLikeVideos, useWatchLater } from "../../hooks";
 import { addToHistoryHandler } from "../../utils/services";
+import { useData, useAuth, usePlaylist } from "../../context";
+import { routes } from "../../constants";
 
 const SingleVideoPage = () => {
   const { videoId } = useParams();
+  const navigate = useNavigate();
   const {
     dataState: { videos, history },
     dataDispatch,
@@ -23,12 +25,34 @@ const SingleVideoPage = () => {
   const {
     authState: { token },
   } = useAuth();
+  const { setShowPlaylistModal, setSelectedVideo } = usePlaylist();
 
   const [currVideo, setCurrVideo] = useState({});
   const [btnState, setBtnState] = useState({
     like: false,
     watchlater: false,
   });
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data, status, statusText } = await axios.get(
+          `/api/video/${videoId}`
+        );
+        if (status === 200) {
+          setCurrVideo(data.video);
+          const isInHistory = history.find((curr) => curr._id === videoId);
+          if (token && !isInHistory)
+            addToHistoryHandler({ video: data.video, token, dataDispatch });
+        } else throw new Error(statusText);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+
+    return () => setCurrVideo({});
+  }, [videoId]);
+
   const { isLiked, handlelikes } = useLikeVideos(currVideo);
   const { inWatchLater, handleWatchLater } = useWatchLater(currVideo);
 
@@ -44,6 +68,14 @@ const SingleVideoPage = () => {
     }));
   };
 
+  const handlePlaylistBtnClick = () => {
+    if (!token) navigate(routes.LOGIN_PAGE);
+    else {
+      setSelectedVideo(currVideo);
+      setShowPlaylistModal(true);
+    }
+  };
+
   const handleWatchLaterBtnClick = () => {
     setBtnState((prev) => ({
       ...prev,
@@ -55,18 +87,6 @@ const SingleVideoPage = () => {
       watchlater: !prev.watchlater,
     }));
   };
-
-  useEffect(() => {
-    (async () => {
-      const { data, status } = await axios.get(`/api/video/${videoId}`);
-      if (status === 200) setCurrVideo(data.video);
-      const isInHistory = history.find((curr) => curr._id === videoId);
-      if (token && !isInHistory)
-        addToHistoryHandler({ video: data.video, token, dataDispatch });
-    })();
-
-    return () => setCurrVideo({});
-  }, [videoId]);
 
   return (
     <>
@@ -104,8 +124,8 @@ const SingleVideoPage = () => {
                   <MdOutlineWatchLater className="sm-icon" />
                 )}
               </button>
-              <button className="action-btns">
-                <MdOutlineVideoLibrary className="sm-icon" />
+              <button className="action-btns" onClick={handlePlaylistBtnClick}>
+                <MdOutlineVideoLibrary className="sm-icon " />
               </button>
             </div>
           </div>

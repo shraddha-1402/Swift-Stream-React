@@ -6,7 +6,7 @@ import {
   AiOutlineUser,
   AiOutlineLike,
 } from "react-icons/ai";
-import { MdHistory } from "react-icons/md";
+import { MdHistory, MdOutlineVideoLibrary } from "react-icons/md";
 import { CustomNavLink } from "../index";
 import { useAuth } from "../../context";
 import { routes } from "../../constants";
@@ -58,6 +58,20 @@ const Menubar = ({ setMenubarActive, menubarActive }) => {
           activeClassName="gray-bg text-bold-weight"
           className="link menubar-items"
           inactiveClassName="gray-text"
+          to={routes.PLAYLIST_PAGE}
+          clickHandler={clickHandler}
+        >
+          <span className="flex-row align-center">
+            <MdOutlineVideoLibrary className="xs-icon mr-0-25" /> Playlist
+          </span>
+        </CustomNavLink>
+      </li>
+
+      <li>
+        <CustomNavLink
+          activeClassName="gray-bg text-bold-weight"
+          className="link menubar-items"
+          inactiveClassName="gray-text"
           to={routes.WATCHLATER_PAGE}
           clickHandler={clickHandler}
         >
@@ -80,6 +94,7 @@ const Menubar = ({ setMenubarActive, menubarActive }) => {
           </span>
         </CustomNavLink>
       </li>
+
       <li>
         <CustomNavLink
           activeClassName="gray-bg text-bold-weight"

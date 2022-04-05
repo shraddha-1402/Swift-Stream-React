@@ -11,6 +11,13 @@ export {
   getLikedVideosHandler,
 } from "./likesHandler";
 export {
+  getAllPlaylistHandler,
+  addPlaylistHandler,
+  deletePlaylistHandler,
+  addToPlaylistHandler,
+  deleteFromPlaylistHandler,
+} from "./playlistHandler";
+export {
   getAllWatchLaterVideos,
   addToWatchlater,
   removeFromWatchlater,

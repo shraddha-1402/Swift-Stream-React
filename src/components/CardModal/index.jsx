@@ -1,22 +1,34 @@
 import "./style.css";
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { useOnClickOutside } from "../../hooks";
+import { useWatchLater, useOnClickOutside } from "../../hooks";
 import { deleteFromHistoryHandler } from "../../utils/services";
-import { useAuth, useData } from "../../context";
-import { useWatchLater } from "../../hooks/useWatchLater";
+import { useAuth, useData, usePlaylist } from "../../context";
+import { routes } from "../../constants";
 
 const CardModal = ({ video, setModalOpen, rest }) => {
   const { isInHistory } = Object.entries(rest).length > 0 ? rest : false;
 
   const ref = useRef();
   useOnClickOutside(ref, () => setModalOpen(false));
+  const navigate = useNavigate();
 
   const { dataDispatch } = useData();
   const {
     authState: { token },
   } = useAuth();
 
+  const { setSelectedVideo, setShowPlaylistModal } = usePlaylist();
+
+  const handlePlaylistClick = () => {
+    if (!token) navigate(routes.LOGIN_PAGE);
+    else {
+      setModalOpen(false);
+      setSelectedVideo(video);
+      setShowPlaylistModal(true);
+    }
+  };
   const { inWatchLater, handleWatchLater } = useWatchLater(video);
 
   return (
@@ -32,7 +44,7 @@ const CardModal = ({ video, setModalOpen, rest }) => {
       >
         {inWatchLater ? "Remove from Watch Later" : "Add to Watch Later"}
       </li>
-      <li className="card-modal-item" onClick={() => setModalOpen(false)}>
+      <li className="card-modal-item" onClick={handlePlaylistClick}>
         Save to Playlist
       </li>
       {isInHistory && (
