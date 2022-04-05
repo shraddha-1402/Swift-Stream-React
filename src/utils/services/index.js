@@ -12,5 +12,8 @@ export {
 } from "./likesHandler";
 export {
   getAllPlaylistHandler,
+  addPlaylistHandler,
   deletePlaylistHandler,
+  addToPlaylistHandler,
+  deleteFromPlaylistHandler,
 } from "./playlistHandler";
