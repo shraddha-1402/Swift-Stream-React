@@ -14,12 +14,20 @@ const PlaylistCard = ({ playlist }) => {
   const {
     authState: { token },
   } = useAuth();
+
+  const handleDeletePlaylistClick = (event) => {
+    event.stopPropagation();
+    deletePlaylistHandler({ playlist, token, dataDispatch });
+  };
+
   return (
-    <div className="card mw-16r pos-rel">
-      <button
-        className="playlist-delete"
-        onClick={() => deletePlaylistHandler({ playlist, token, dataDispatch })}
-      >
+    <div
+      className={`card mw-16r pos-rel ${videos.length ? "curr-pointer" : ""}`}
+      onClick={() =>
+        videos.length && navigate(`${routes.PLAYLIST_PAGE}/${_id}`)
+      }
+    >
+      <button className="playlist-delete" onClick={handleDeletePlaylistClick}>
         <MdDelete className="xs-icon" />
       </button>
       <img
@@ -27,12 +35,7 @@ const PlaylistCard = ({ playlist }) => {
         className="responsive-img thumbnail"
         alt="video-thumbnail"
       />
-      <div
-        className="playlist-info"
-        onClick={() =>
-          videos.length && navigate(`${routes.PLAYLIST_PAGE}/${_id}`)
-        }
-      >
+      <div className="playlist-info">
         <MdPlayArrow className="sm-icon" />
         <p className="playlist-title">
           {title.toUpperCase()} ({videos.length})
