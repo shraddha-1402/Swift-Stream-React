@@ -21,7 +21,7 @@ const PlaylistPage = () => {
 
   return (
     <div>
-      {playlists.length ? (
+      {playlists?.length ? (
         <>
           <h3 className="mb-1">Your Playlists ( {playlists.length} ) </h3>
           <div className="grid-layout">

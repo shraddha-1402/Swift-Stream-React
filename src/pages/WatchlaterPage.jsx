@@ -21,7 +21,7 @@ const WatchlaterPage = () => {
 
   return (
     <div>
-      {watchlater.length ? (
+      {watchlater?.length ? (
         <>
           <h3 className="mb-1">
             Your Watch Later List ( {watchlater.length} )

@@ -21,7 +21,7 @@ const LikedVideosPage = () => {
 
   return (
     <div>
-      {likes.length ? (
+      {likes?.length ? (
         <>
           <h3 className="mb-1">Liked Videos ( {likes.length} )</h3>
           <div className="grid-layout">
