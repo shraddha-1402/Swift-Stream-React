@@ -41,6 +41,10 @@ function App() {
         <div className="videos-container ">
           <Routes>
             <Route
+              path="/"
+              element={<Navigate to={routes.VIDEO_LISTING_PAGE} />}
+            />
+            <Route
               element={<VideoListingPage />}
               path={routes.VIDEO_LISTING_PAGE}
             />
