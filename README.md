@@ -4,9 +4,11 @@
 
 A Streaming Platform for Taylor Swift's Videos
 
+[Visit Site](https://swift-stream.netlify.app/)
+
 </div>
 
-# Built With
+## Built With
 
 <p align="center">
 <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
@@ -17,39 +19,39 @@ A Streaming Platform for Taylor Swift's Videos
 <img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" />
 </p>
 
-# Features
+## Features
 
 1. [Explore Videos](#explore-videos)
 2. [Watch Single Video](#watch-single-video)
-3. [Like/Dislike Videos](#like/dislike-videos)
-4. [Watch Later Videos](#watch-later-page)
+3. [Like/Dislike Videos](#likedislike-videos)
+4. [Watch Later Videos](#watch-later-videos)
 5. [Playlist](#playlist)
 6. [Watch History](#watch-history)
-7. [Explore Videos By Categories](#videos-by-category)
+7. [Explore Videos By Categories](#explore-videos-by-categories)
 8. [Search Videos](#search-videos)
 9. [Authentication](#authentication)
 
-## Explore Videos
+### Explore Videos
 
-## Watch Single Video
+### Watch Single Video
 
-## Like/Dislike Videos
+### Like/Dislike Videos
 
-## Watch Later Videos
+### Watch Later Videos
 
-## Playlist
+### Playlist
 
-## Watch History
+### Watch History
 
-## Explore Videos By Categories
+### Explore Videos By Categories
 
-## Search Videos
+### Search Videos
 
-## Authentication
+### Authentication
 
-## Working Video Of The Site
+### Working Video Of The Site
 
-# Contribute
+## Contribute
 
 Clone the project locally by running
 
@@ -75,7 +77,7 @@ Start the project
 npm start
 ```
 
-# Connect with me on
+## Connect with me on
 
 [![LinkedIn](https://img.shields.io/badge/LINKEDIN-10?logo=linkedin&color=blue)](https://www.linkedin.com/in/shraddha-1402/)
 [![GitHub](https://img.shields.io/badge/GITHUB-10?logo=github&color=black)](https://github.com/shraddha-1402)
