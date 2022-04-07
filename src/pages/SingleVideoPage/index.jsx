@@ -98,7 +98,9 @@ const SingleVideoPage = () => {
           />
           <h3 className="my-0-5"> {currVideo?.title} </h3>
           <div className="video-details-wrapper">
-            <div className="gray-text"> 4 months ago | 13M views </div>
+            <div className="gray-text">
+              {currVideo?.postedOn} months ago | {currVideo?.views} views
+            </div>
 
             <div>
               <button
