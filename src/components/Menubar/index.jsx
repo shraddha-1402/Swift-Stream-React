@@ -6,7 +6,11 @@ import {
   AiOutlineUser,
   AiOutlineLike,
 } from "react-icons/ai";
-import { MdHistory, MdOutlineVideoLibrary } from "react-icons/md";
+import {
+  MdHistory,
+  MdOutlineWatchLater,
+  MdOutlineVideoLibrary,
+} from "react-icons/md";
 import { CustomNavLink } from "../index";
 import { useAuth } from "../../context";
 import { routes } from "../../constants";
@@ -76,7 +80,7 @@ const Menubar = ({ setMenubarActive, menubarActive }) => {
           clickHandler={clickHandler}
         >
           <span className="flex-row align-center">
-            <MdHistory className="xs-icon mr-0-25" /> Watch Later
+            <MdOutlineWatchLater className="xs-icon mr-0-25" /> Watch Later
           </span>
         </CustomNavLink>
       </li>
