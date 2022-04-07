@@ -39,7 +39,7 @@ const SinglePlaylistPage = () => {
 
   return (
     <div>
-      {!!Object.entries(currPlaylist).length && (
+      {!!Object.entries(currPlaylist)?.length && (
         <>
           <div className="flex-row mb-1">
             <button

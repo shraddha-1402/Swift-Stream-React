@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import { VideoCard } from "../components";
 import { routes } from "../constants";
 import { useAuth, useData } from "../context";
-import { clearHistoryHandler, getAllHistoryVideosHandler } from "../utils/services";
+import {
+  clearHistoryHandler,
+  getAllHistoryVideosHandler,
+} from "../utils/services";
 
 const HistoryPage = () => {
   const {
@@ -11,13 +14,12 @@ const HistoryPage = () => {
     dataDispatch,
   } = useData();
 
-
   const {
     authState: { token },
   } = useAuth();
 
   useEffect(() => {
-    getAllHistoryVideosHandler({token, dataDispatch});
+    getAllHistoryVideosHandler({ token, dataDispatch });
   }, []);
 
   return (
@@ -28,7 +30,7 @@ const HistoryPage = () => {
             <h3>Recenty Viewed</h3>
             <button
               className="btn btn-solid-danger sm-btn"
-              onClick={() => clearHistoryHandler({token, dataDispatch})}
+              onClick={() => clearHistoryHandler({ token, dataDispatch })}
             >
               Clear
             </button>

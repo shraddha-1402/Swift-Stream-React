@@ -29,7 +29,7 @@ const routes = {
   LOGIN_PAGE: "/login-page",
   SIGNUP_PAGE: "/signup-page",
   HISTORY_PAGE: "/history-page",
-  LIKED_VIDEOS_PAGE: "/liked-videos/page",
+  LIKED_VIDEOS_PAGE: "/liked-videos",
   PLAYLIST_PAGE: "/playlist-page",
   WATCHLATER_PAGE: "/watchlater-page",
 };
