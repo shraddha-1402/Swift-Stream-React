@@ -1,11 +1,27 @@
 import "./style.css";
 import PropTypes from "prop-types";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaSearch, FaBars } from "react-icons/fa";
-import { routes } from "../../constants";
+import { actionType, routes } from "../../constants";
+import { useData } from "../../context";
 
 const Navbar = ({ setMenubarActive }) => {
+  const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const { dataDispatch } = useData();
+
+  const handleSearch = () => {
+    if (pathname !== routes.VIDEO_LISTING_PAGE)
+      navigate(routes.VIDEO_LISTING_PAGE);
+    dataDispatch({
+      type: actionType.DATA.SEARCH_VIDEOS,
+      payload: searchText,
+    });
+  };
+
   return (
     <nav className="pos-sticky-t0 z-1">
       <div className="nav justify-spc-bet pos-rel">
@@ -29,6 +45,10 @@ const Navbar = ({ setMenubarActive }) => {
             id="search-videos"
             className="nav-search-input"
             placeholder="search videos"
+            autoComplete="off"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            onKeyUpCapture={handleSearch}
           />
           <button className="nav-search-btn">
             <FaSearch />

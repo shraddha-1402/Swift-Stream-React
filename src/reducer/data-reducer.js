@@ -10,6 +10,7 @@ const dataReducer = (state, action) => {
       UPDATE_PLAYLISTS,
       UPDATE_PLAYLIST_VIDEOS,
       UPDATE_WATCH_LATER,
+      SEARCH_VIDEOS,
     },
   } = actionType;
   switch (action.type) {
@@ -53,6 +54,11 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         watchlater: action.payload.watchlater,
+      };
+    case SEARCH_VIDEOS:
+      return {
+        ...state,
+        searchText: action.payload,
       };
 
     default:
