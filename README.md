@@ -31,25 +31,7 @@ A Streaming Platform for Taylor Swift's Videos
 8. [Search Videos](#search-videos)
 9. [Authentication](#authentication)
 
-### Explore Videos
 
-### Watch Single Video
-
-### Like/Dislike Videos
-
-### Watch Later Videos
-
-### Playlist
-
-### Watch History
-
-### Explore Videos By Categories
-
-### Search Videos
-
-### Authentication
-
-### Working Video Of The Site
 
 ## Contribute
 
