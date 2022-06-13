@@ -4,8 +4,10 @@ import { routes } from "../constants";
 import { useAuth, useData } from "../context";
 import { PlaylistCard } from "../components";
 import { getAllPlaylistHandler } from "../utils/services/";
+import { useDynamicTitle } from "../hooks";
 
 const PlaylistPage = () => {
+  useDynamicTitle();
   const {
     dataState: { playlists },
     dataDispatch,

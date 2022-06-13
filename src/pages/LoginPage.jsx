@@ -4,8 +4,10 @@ import { FormInput } from "../components";
 import { useAuth } from "../context";
 import { loginHandler } from "../utils/services/";
 import { routes, testCredentials } from "../constants";
+import { useDynamicTitle } from "../hooks";
 
 const LoginPage = () => {
+  useDynamicTitle();
   const [{ email, password }, setLoginCredentials] = useState({
     email: "",
     password: "",

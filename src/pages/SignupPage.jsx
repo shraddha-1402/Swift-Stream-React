@@ -4,8 +4,10 @@ import { FormInput } from "../components";
 import { useAuth } from "../context/";
 import { signupHandler } from "../utils/services";
 import { routes } from "../constants";
+import { useDynamicTitle } from "../hooks";
 
 const SignupPage = () => {
+  useDynamicTitle();
   const [
     { firstName, lastName, email, password },
     setSignupCredentials,

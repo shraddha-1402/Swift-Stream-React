@@ -10,12 +10,13 @@ import {
 } from "react-icons/md";
 import { VideoCard } from "../../components";
 import { getRandomVideos } from "../../utils/";
-import { useLikeVideos, useWatchLater } from "../../hooks";
+import { useDynamicTitle, useLikeVideos, useWatchLater } from "../../hooks";
 import { addToHistoryHandler } from "../../utils/services";
 import { useData, useAuth, usePlaylist } from "../../context";
 import { routes } from "../../constants";
 
 const SingleVideoPage = () => {
+  useDynamicTitle();
   const { videoId } = useParams();
   const navigate = useNavigate();
   const {

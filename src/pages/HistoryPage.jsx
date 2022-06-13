@@ -7,8 +7,10 @@ import {
   clearHistoryHandler,
   getAllHistoryVideosHandler,
 } from "../utils/services";
+import { useDynamicTitle } from "../hooks";
 
 const HistoryPage = () => {
+  useDynamicTitle();
   const {
     dataState: { history },
     dataDispatch,

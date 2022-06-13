@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useData } from "../context";
 import { CategoryChip, VideoCard } from "../components/";
 import { getCategoryFilteredVideos, getSearchFilteredVideos } from "../utils";
+import { useDynamicTitle } from "../hooks";
 
 const VideoListingPage = () => {
+  useDynamicTitle();
   const {
     dataState: { videos, searchText },
   } = useData();

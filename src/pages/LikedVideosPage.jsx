@@ -4,8 +4,10 @@ import { VideoCard } from "../components";
 import { useAuth, useData } from "../context";
 import { routes } from "../constants";
 import { getLikedVideosHandler } from "../utils/services";
+import { useDynamicTitle } from "../hooks";
 
 const LikedVideosPage = () => {
+  useDynamicTitle();
   const {
     dataState: { likes },
     dataDispatch,

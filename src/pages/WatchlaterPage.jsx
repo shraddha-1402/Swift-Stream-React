@@ -4,8 +4,10 @@ import { VideoCard } from "../components";
 import { useAuth, useData } from "../context";
 import { routes } from "../constants";
 import { getAllWatchLaterVideos } from "../utils/services";
+import { useDynamicTitle } from "../hooks";
 
 const WatchlaterPage = () => {
+  useDynamicTitle();
   const {
     dataState: { watchlater },
     dataDispatch,
