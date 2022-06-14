@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FormInput } from "../components";
 import { useAuth } from "../context";
 import { loginHandler } from "../utils/services/";
@@ -8,6 +8,7 @@ import { useDynamicTitle } from "../hooks";
 
 const LoginPage = () => {
   useDynamicTitle();
+  const { authDispatch } = useAuth();
   const [{ email, password }, setLoginCredentials] = useState({
     email: "",
     password: "",
@@ -20,12 +21,9 @@ const LoginPage = () => {
     }));
   };
 
-  const navigate = useNavigate();
-  const { authDispatch } = useAuth();
-
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
-    loginHandler({ email, password }, authDispatch, navigate);
+    loginHandler({ email, password }, authDispatch);
   };
 
   return (

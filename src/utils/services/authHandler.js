@@ -1,7 +1,7 @@
 import axios from "axios";
-import { actionType, routes } from "../../constants";
+import { actionType } from "../../constants";
 
-const loginHandler = async (credentials, authDispatch, navigate) => {
+const loginHandler = async (credentials, authDispatch) => {
   try {
     const { data, status, statusText } = await axios.post("/api/auth/login", {
       ...credentials,
@@ -17,14 +17,13 @@ const loginHandler = async (credentials, authDispatch, navigate) => {
         type: actionType.AUTH.USER_LOGIN,
         payload: userData,
       });
-      navigate(routes.VIDEO_LISTING_PAGE);
     } else throw new Error(statusText);
   } catch (error) {
     console.log(error);
   }
 };
 
-const signupHandler = async (credentials, authDispatch, navigate) => {
+const signupHandler = async (credentials, authDispatch) => {
   try {
     const { data, status, statusText } = await axios.post("/api/auth/signup", {
       ...credentials,
@@ -40,7 +39,6 @@ const signupHandler = async (credentials, authDispatch, navigate) => {
         type: actionType.AUTH.USER_LOGIN,
         payload: userData,
       });
-      navigate(routes.VIDEO_LISTING_PAGE);
     } else throw new Error(statusText);
   } catch (error) {
     console.log(error);

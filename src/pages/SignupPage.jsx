@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FormInput } from "../components";
 import { useAuth } from "../context/";
 import { signupHandler } from "../utils/services";
@@ -8,6 +8,7 @@ import { useDynamicTitle } from "../hooks";
 
 const SignupPage = () => {
   useDynamicTitle();
+  const { authDispatch } = useAuth();
   const [
     { firstName, lastName, email, password },
     setSignupCredentials,
@@ -25,16 +26,9 @@ const SignupPage = () => {
     }));
   };
 
-  const navigate = useNavigate();
-  const { authDispatch } = useAuth();
-
   const handleSignupSubmit = async (event) => {
     event.preventDefault();
-    signupHandler(
-      { firstName, lastName, email, password },
-      authDispatch,
-      navigate
-    );
+    signupHandler({ firstName, lastName, email, password }, authDispatch);
   };
 
   return (
