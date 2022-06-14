@@ -8,3 +8,4 @@ export { LikedVideosPage } from "./LikedVideosPage";
 export { PlaylistPage } from "./PlaylistPage";
 export { SinglePlaylistPage } from "./SinglePlaylistPage";
 export { WatchlaterPage } from "./WatchlaterPage";
+export { PageNotFound } from "./PageNotFound";

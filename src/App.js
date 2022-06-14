@@ -12,6 +12,7 @@ import {
   PlaylistPage,
   SinglePlaylistPage,
   WatchlaterPage,
+  PageNotFound,
 } from "./pages";
 import { Menubar, Navbar, PlaylistModal, PrivateRoute } from "./components";
 import { usePlaylist } from "./context";
@@ -74,6 +75,7 @@ function App() {
               />
               <Route element={<HistoryPage />} path={routes.HISTORY_PAGE} />
             </Route>
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </div>
       </main>
