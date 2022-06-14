@@ -6,3 +6,4 @@ export { CategoryChip } from "./CategoryChip";
 export { FormInput } from "./FormInput";
 export { PlaylistCard } from "./PlaylistCard";
 export { PlaylistModal } from "./PlaylistModal";
+export { PrivateRoute } from "./PrivateRoute";
