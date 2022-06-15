@@ -27,11 +27,9 @@ A Streaming Platform for Taylor Swift's Videos
 4. [Watch Later Videos](#watch-later-videos)
 5. [Playlist](#playlist)
 6. [Watch History](#watch-history)
-7. [Explore Videos By Categories](#explore-videos-by-categories)
-8. [Search Videos](#search-videos)
-9. [Authentication](#authentication)
-
-
+7. [Search Videos](#search-videos)
+8. [Authentication](#authentication)
+9. [404 Page](#page-not-found)
 
 ## Contribute
 
