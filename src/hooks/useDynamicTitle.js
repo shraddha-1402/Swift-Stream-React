@@ -7,7 +7,7 @@ const useDynamicTitle = () => {
       .split("/")[1]
       .split("-")[0]
       .toUpperCase()}`;
-  else document.title = "SS | HOME";
+  else document.title = "SS | EXPLORE";
   return { pathname };
 };
 
