@@ -100,7 +100,7 @@ const SingleVideoPage = () => {
       <div className="main-wrapper">
         <div className="w-100p">
           <iframe
-            src={`https://www.youtube-nocookie.com/embed/${currVideo?._id}`}
+            src={`https://www.youtube.com/embed/${currVideo?._id}`}
             className="single-video"
           />
           <h3 className="my-0-5"> {currVideo?.title} </h3>
