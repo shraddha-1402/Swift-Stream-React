@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import { actionType } from "../../constants";
 
 const loginHandler = async (credentials, authDispatch) => {
@@ -17,6 +18,7 @@ const loginHandler = async (credentials, authDispatch) => {
         type: actionType.AUTH.USER_LOGIN,
         payload: userData,
       });
+      toast.success("Successfully logged in");
     } else throw new Error(statusText);
   } catch (error) {
     console.log(error);
@@ -39,6 +41,7 @@ const signupHandler = async (credentials, authDispatch) => {
         type: actionType.AUTH.USER_LOGIN,
         payload: userData,
       });
+      toast.success("Successfully signed up");
     } else throw new Error(statusText);
   } catch (error) {
     console.log(error);

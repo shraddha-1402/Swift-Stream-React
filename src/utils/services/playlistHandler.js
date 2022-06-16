@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import { actionType } from "../../constants";
 
 const getAllPlaylistHandler = async ({ token, dataDispatch }) => {
@@ -73,12 +74,13 @@ const addToPlaylistHandler = async ({
       { video: selectedVideo },
       { headers: { authorization: token } }
     );
-    if (status === 201)
+    if (status === 201) {
       dataDispatch({
         type: actionType.DATA.UPDATE_PLAYLIST_VIDEOS,
         payload: data.playlist,
       });
-    else throw new Error(statusText);
+      toast.success(`Video added to ${playlist.title} playlist`);
+    } else throw new Error(statusText);
   } catch (error) {
     console.log(error);
   }

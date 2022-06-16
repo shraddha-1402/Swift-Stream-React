@@ -1,6 +1,8 @@
 import "./App.css";
 import React, { useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
+import { Slide, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import {
   VideoListingPage,
   SingleVideoPage,
@@ -79,6 +81,14 @@ function App() {
           </Routes>
         </div>
       </main>
+      <ToastContainer
+        autoClose={1000}
+        hideProgressBar={true}
+        newestOnTop={true}
+        transition={Slide}
+        theme="colored"
+        position={"bottom-right"}
+      />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import { actionType } from "../../constants";
 
 const getAllHistoryVideosHandler = async ({ token, dataDispatch }) => {
@@ -49,12 +50,13 @@ const deleteFromHistoryHandler = async ({ token, videoId, dataDispatch }) => {
         },
       }
     );
-    if (status === 200)
+    if (status === 200) {
       dataDispatch({
         type: actionType.DATA.UPDATE_HISTORY,
         payload: data.history,
       });
-    else throw new Error(statusText);
+      toast.success("Video removed from history");
+    } else throw new Error(statusText);
   } catch (error) {
     console.log(error);
   }
@@ -70,12 +72,13 @@ const clearHistoryHandler = async ({ token, dataDispatch }) => {
         },
       }
     );
-    if (status === 200)
+    if (status === 200) {
       dataDispatch({
         type: actionType.DATA.UPDATE_HISTORY,
         payload: data.history,
       });
-    else throw new Error(statusText);
+      toast.success("History Cleared");
+    } else throw new Error(statusText);
   } catch (error) {
     console.log(error);
   }
