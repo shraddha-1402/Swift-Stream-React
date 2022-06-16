@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { VideoCard } from "../components";
 import { routes } from "../constants";
@@ -20,9 +20,13 @@ const HistoryPage = () => {
     authState: { token },
   } = useAuth();
 
+  const [historyVideos, setHistoryVideos] = useState([]);
+
   useEffect(() => {
     getAllHistoryVideosHandler({ token, dataDispatch });
-  }, []);
+    const tempHistory = [...history];
+    setHistoryVideos(tempHistory.reverse());
+  }, [history]);
 
   return (
     <div>
@@ -38,7 +42,7 @@ const HistoryPage = () => {
             </button>
           </div>
           <div className="grid-layout">
-            {history?.map((video) => (
+            {historyVideos?.map((video) => (
               <VideoCard key={video._id} video={video} isInHistory={true} />
             ))}
           </div>
