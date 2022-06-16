@@ -29,6 +29,7 @@ const SingleVideoPage = () => {
   const { setShowPlaylistModal, setSelectedVideo } = usePlaylist();
 
   const [currVideo, setCurrVideo] = useState({});
+  const [suggestedVideos, setSuggestedVideos] = useState([]);
   const [btnState, setBtnState] = useState({
     like: false,
     watchlater: false,
@@ -50,9 +51,14 @@ const SingleVideoPage = () => {
         console.log(error);
       }
     })();
+    setSuggestedVideos(getRandomVideos(videos, 4));
 
     return () => setCurrVideo({});
   }, [videoId]);
+
+  useEffect(() => {
+    setSuggestedVideos(getRandomVideos(videos, 4));
+  }, [videos]);
 
   const { isLiked, handlelikes } = useLikeVideos(currVideo);
   const { inWatchLater, handleWatchLater } = useWatchLater(currVideo);
@@ -94,7 +100,7 @@ const SingleVideoPage = () => {
       <div className="main-wrapper">
         <div className="w-100p">
           <iframe
-            src={`https://www.youtube.com/embed/${currVideo?._id}`}
+            src={`https://www.youtube-nocookie.com/embed/${currVideo?._id}`}
             className="single-video"
           />
           <h3 className="my-0-5"> {currVideo?.title} </h3>
@@ -136,7 +142,7 @@ const SingleVideoPage = () => {
         </div>
         <div className="other-videos-wrapper">
           <h3>Other Videos</h3>
-          {getRandomVideos(videos, 4).map((video) => (
+          {suggestedVideos.map((video) => (
             <VideoCard key={video._id} video={video} />
           ))}
         </div>
